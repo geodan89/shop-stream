@@ -13,6 +13,8 @@ public class StringListConverter implements AttributeConverter<List<String>, Str
     // ObjectMapper is thread-safe after configuration — safe to share as a static field
     private static final ObjectMapper mapper = new ObjectMapper();
 
+    //Takes your Java list and converts it to a JSON string that fits in a TEXT column.
+    //List.of("prod-A", "prod-B")  →  "[\"prod-A\",\"prod-B\"]"
     @Override
     public String convertToDatabaseColumn(List<String> list) {
         if (list == null || list.isEmpty()) {
@@ -25,6 +27,8 @@ public class StringListConverter implements AttributeConverter<List<String>, Str
         }
     }
 
+    //Takes the JSON string from the database and converts it back to a Java list.
+    //"[\"prod-A\",\"prod-B\"]"  →  List.of("prod-A", "prod-B")
     @Override
     public List<String> convertToEntityAttribute(String json) {
         if (json == null || json.isBlank()) {

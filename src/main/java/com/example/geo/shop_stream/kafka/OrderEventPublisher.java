@@ -14,14 +14,14 @@ public class OrderEventPublisher {
 
     private final KafkaProducer<String, String> producer;
     private final ObjectMapper objectMapper;
-
-    @Value("${kafka.topic.orders-placed}")
-    private String topic;
+    private final String topic;
 
     public OrderEventPublisher(KafkaProducer<String, String> producer,
-                               ObjectMapper objectMapper) {
+                               ObjectMapper objectMapper,
+                               @Value("${kafka.topic.orders-placed}") String topic) {
         this.producer = producer;
         this.objectMapper = objectMapper;
+        this.topic = topic;
     }
 
     public void publish(OrderPlacedEvent event) {
