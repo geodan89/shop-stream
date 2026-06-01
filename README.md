@@ -1,7 +1,7 @@
 # ShopStream — local dev setup
 
 Start Postgres.app
-./scripts/kafka-format.sh (only if Kafka storage was wiped — after a Mac restart)
+./scripts/kafka-format.sh (only if Kafka storage was wiped)
 ./scripts/kafka-start.sh
 ./scripts/kafka-create-topics.sh (only if topics were lost)
 mvn spring-boot:run
